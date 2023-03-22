@@ -6,7 +6,7 @@
 /*   By: kakumar <kakumar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:12:05 by kakumar           #+#    #+#             */
-/*   Updated: 2023/03/22 15:42:28 by kakumar          ###   ########.fr       */
+/*   Updated: 2023/03/22 16:06:36 by kakumar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int	main(int argc, char **argv)
 		printf("Errors found in data given in the arguments.\n");
 		return (-1);
 	}
-	init_philos(&data);
+	init_data_philos(&data, argv);
 	
 }
