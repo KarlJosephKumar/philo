@@ -6,11 +6,18 @@
 /*   By: kakumar <kakumar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:29:12 by kakumar           #+#    #+#             */
-/*   Updated: 2023/03/22 16:06:38 by kakumar          ###   ########.fr       */
+/*   Updated: 2023/03/23 14:41:25 by kakumar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+long long get_time_in_ms(void)
+{
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000LL + tv.tv_usec / 1000);
+}
 
 int	philo_atoi(char *str)
 {
