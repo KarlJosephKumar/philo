@@ -6,7 +6,7 @@
 /*   By: kakumar <kakumar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:47:14 by kakumar           #+#    #+#             */
-/*   Updated: 2023/03/23 14:46:05 by kakumar          ###   ########.fr       */
+/*   Updated: 2023/03/23 15:00:19 by kakumar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	init_philos(t_data *data, int i, t_common *common)
 	philosopher.last_meal = 0;
 	philosopher.state = 0;
 	philosopher.common = common;
-	philosopher.start_time = get_time_in_ms();
 	pthread_mutex_init(&philosopher.fork, NULL);
 	data->philo[i] = philosopher;
 }
@@ -35,6 +34,7 @@ void	init_data_philos(t_data *data, char **argv, t_common *common)
 	common->time_to_die = philo_atoi(argv[2]);
 	common->time_to_eat = philo_atoi(argv[3]);
 	common->time_to_sleep = philo_atoi(argv[4]);
+	common->start_time = get_time_in_ms();
 	data->common = common;
 	if (argv[5])
 		common->number_of_times_to_eat = philo_atoi(argv[5]);

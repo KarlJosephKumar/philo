@@ -6,7 +6,7 @@
 /*   By: kakumar <kakumar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:43:42 by kakumar           #+#    #+#             */
-/*   Updated: 2023/03/23 14:44:20 by kakumar          ###   ########.fr       */
+/*   Updated: 2023/03/23 15:02:38 by kakumar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include <unistd.h>
 
 typedef struct s_common
 {
@@ -24,6 +25,7 @@ typedef struct s_common
 	int			time_to_eat;
 	int			time_to_sleep;
 	int			number_of_times_to_eat;
+	long long	start_time;
 }	t_common;
 
 typedef struct s_philo
@@ -46,11 +48,12 @@ typedef struct s_data
 }	t_data;
 
 //threads
-void	run_threads(t_data *data);
+int			run_threads(t_data *data);
 //initialize
-void	init_data_philos(t_data *data, char **argv, t_common *common);
+void		init_data_philos(t_data *data, char **argv, t_common *common);
 //utils
-int		philo_atoi(char *str);
-long long get_time_in_ms(void);
+int			philo_atoi(char *str);
+long long	get_time_in_ms(void);
+long long philo_start_time(t_philo *philo);
 
 #endif
