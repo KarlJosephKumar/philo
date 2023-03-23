@@ -6,7 +6,7 @@
 /*   By: kakumar <kakumar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:12:05 by kakumar           #+#    #+#             */
-/*   Updated: 2023/03/22 16:06:36 by kakumar          ###   ########.fr       */
+/*   Updated: 2023/03/23 14:46:07 by kakumar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,24 @@ int	check_error(char **argv)
 			return (-1);
 		}
 	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_data data;
+	t_data		data;
+	t_common	common;
 
-	if (argc != 5 || argc != 6)
+	if (argc != 5 && argc != 6)
 	{
 		printf("Argument count error\n");
-		return  (-1);
+		return (-1);
 	}
 	if (check_error(argv) < 0)
 	{
 		printf("Errors found in data given in the arguments.\n");
 		return (-1);
 	}
-	init_data_philos(&data, argv);
-	
+	init_data_philos(&data, argv, &common);
+	run_threads(&data);	
 }
