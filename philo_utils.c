@@ -6,7 +6,7 @@
 /*   By: kakumar <kakumar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:29:12 by kakumar           #+#    #+#             */
-/*   Updated: 2023/03/27 13:17:33 by kakumar          ###   ########.fr       */
+/*   Updated: 2023/03/27 15:39:06 by kakumar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,23 @@ long long get_time_in_ms(void)
 	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
+
+void	s_leep(t_philo *philo, int time_to)
+{
+	long long	end_time;
+
+	end_time = get_time_in_ms() + time_to;
+	while(end_time >= get_time_in_ms())
+		usleep(500);
+}
+	// printf("time: %lli\n", time);
+
+// void	print_action(char *str, t_philo *philo)
+// {
+// 	pthread_mutex_lock(&philo->common->print_mute);
+// 	printf("%lli id: %i philo is %s\n", get_time_in_ms() - philo->start, philo->index, str);
+// 	pthread_mutex_unlock(&philo->common->print_mute);
+// }
 
 int	philo_atoi(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: kakumar <kakumar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:33:42 by kakumar           #+#    #+#             */
-/*   Updated: 2023/03/27 14:14:21 by kakumar          ###   ########.fr       */
+/*   Updated: 2023/03/27 15:28:58 by kakumar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,9 @@ void sleeping(t_philo *philo)
 	int	i;
 
 	i = 0;
-	printf("%lld id: %i philo is sleeping\n", get_time_in_ms() - philo->start, philo->index);
+	printf("%lld %i is sleeping\n", get_time_in_ms() - philo->start, philo->index);
 	philo->state = 2;
-	while (i < 1000)
-	{
-		usleep(philo->common->time_to_sleep);
-		i++;
-	}
+	s_leep(philo, philo->common->time_to_eat);
 }
 
 void	eat(t_philo *philo)
@@ -32,38 +28,30 @@ void	eat(t_philo *philo)
 
 	i = 0;
 	pthread_mutex_lock(&philo->fork_l);
-	philo->forks = 1;
-	printf("%lld id: %i philo is holding fork L\n", get_time_in_ms() - philo->start, philo->index);
+	printf("%lld %i is holding fork\n", get_time_in_ms() - philo->start, philo->index);
 	pthread_mutex_lock(philo->fork_r);
-	philo->forks = 2;
-	printf("%lld id: %i philo is holding fork R\n", get_time_in_ms() - philo->start, philo->index);
-	printf("%lli id: %i philo is eating\n", get_time_in_ms() - philo->start, philo->index);
-	philo->last_meal = get_time_in_ms() - philo->start;
+	printf("%lld %i is holding fork\n", get_time_in_ms() - philo->start, philo->index);
+	printf("%lli %i is eating\n", get_time_in_ms() - philo->start, philo->index);
+	philo->last_meal = get_time_in_ms() - philo->last_meal;
 	philo->state = 1;
 	philo->times_eaten++;
-	while (i < 1000)
-	{
-		usleep(philo->common->time_to_eat);
-		i++;
-	}
+	s_leep(philo, philo->common->time_to_eat);
 	pthread_mutex_unlock(&philo->fork_l);
-	philo->forks = 1;
 	pthread_mutex_unlock(philo->fork_r);
-	philo->forks = 0;
 }
-// void think();
 
 void	*routine(void *args)
 {
 	t_philo *philo;
 
 	philo = (t_philo *) args;
+	printf("%lld %i is thinking\n", get_time_in_ms() - philo->start, philo->index);
 	if ((philo->index % 2) == 1)
-		usleep(10);
+		usleep(philo->common->time_to_sleep * 1000 / 2);
 	while(1)
 	{
+		printf("%lld %i is thinking\n", get_time_in_ms() - philo->start, philo->index);
 		philo->state = 0;
-		printf("%lld id: %i philo is thinking\n", get_time_in_ms() - philo->start, philo->index);
 		eat(philo);
 		sleeping(philo);
 	}

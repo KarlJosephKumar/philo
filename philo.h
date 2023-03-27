@@ -6,7 +6,7 @@
 /*   By: kakumar <kakumar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:43:42 by kakumar           #+#    #+#             */
-/*   Updated: 2023/03/27 14:13:28 by kakumar          ###   ########.fr       */
+/*   Updated: 2023/03/27 15:27:59 by kakumar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@
 
 typedef struct s_common
 {
-	int			time_to_die;
-	int			time_to_eat;
-	int			time_to_sleep;
-	int			num_of_forks;
-	int			start_time;
-	int			number_of_times_to_eat;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				num_of_forks;
+	int				start_time;
+	int				number_of_times_to_eat;
+	pthread_mutex_t	print_mute;
 }	t_common;
 
 typedef struct s_philo
@@ -35,7 +36,6 @@ typedef struct s_philo
 	int				times_eaten;
 	long long		last_meal;
 	int				state;
-	int				forks;
 	pthread_mutex_t fork_l;
 	pthread_mutex_t *fork_r;
 	pthread_mutex_t	message;
@@ -60,5 +60,6 @@ void		init_data_philos(t_data *data, char **argv, t_common *common);
 //utils
 int			philo_atoi(char *str);
 long long	get_time_in_ms(void);
-
+void		s_leep(t_philo *philo, int time_to);
+// void		print_action(char *str, t_philo *philo);
 #endif

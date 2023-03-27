@@ -6,7 +6,7 @@
 /*   By: kakumar <kakumar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:47:14 by kakumar           #+#    #+#             */
-/*   Updated: 2023/03/27 14:08:51 by kakumar          ###   ########.fr       */
+/*   Updated: 2023/03/27 14:36:03 by kakumar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	init_philos(t_data *data, int i, t_common *common)
 	philosopher.times_eaten = 0;
 	philosopher.last_meal = 0;
 	philosopher.state = 0;
-	philosopher.forks = 0;
 	philosopher.common = common;
 	pthread_mutex_init(&philosopher.fork_l, NULL);
 	data->philo[i] = philosopher;
