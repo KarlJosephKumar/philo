@@ -6,7 +6,7 @@
 /*   By: kakumar <kakumar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:29:12 by kakumar           #+#    #+#             */
-/*   Updated: 2023/03/23 15:03:35 by kakumar          ###   ########.fr       */
+/*   Updated: 2023/03/27 13:17:33 by kakumar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,7 @@ long long get_time_in_ms(void)
 {
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000LL + tv.tv_usec / 1000);
-}
-
-long long philo_start_time(t_philo *philo)
-{
-	return (philo->start_time = get_time_in_ms() -philo->common->start_time);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
 int	philo_atoi(char *str)
