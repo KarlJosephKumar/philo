@@ -6,7 +6,7 @@
 /*   By: kakumar <kakumar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:47:14 by kakumar           #+#    #+#             */
-/*   Updated: 2023/03/27 14:36:03 by kakumar          ###   ########.fr       */
+/*   Updated: 2023/03/27 15:52:45 by kakumar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ void	init_data_philos(t_data *data, char **argv, t_common *common)
 	common->time_to_sleep = philo_atoi(argv[4]);
 	data->common = common;
 	data->common->start_time = 0;
+	pthread_mutex_init(&common->print_mute, NULL);
 	data->i = 0;
-	if (argv[5])
+	if (philo_atoi(argv[5]) > 0)
 		common->number_of_times_to_eat = philo_atoi(argv[5]);
 	else
 		common->number_of_times_to_eat = -1;

@@ -6,7 +6,7 @@
 /*   By: kakumar <kakumar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:43:42 by kakumar           #+#    #+#             */
-/*   Updated: 2023/03/27 15:27:59 by kakumar          ###   ########.fr       */
+/*   Updated: 2023/03/27 15:46:03 by kakumar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ void		init_data_philos(t_data *data, char **argv, t_common *common);
 int			philo_atoi(char *str);
 long long	get_time_in_ms(void);
 void		s_leep(t_philo *philo, int time_to);
-// void		print_action(char *str, t_philo *philo);
+void		print_action(char *str, t_philo *philo);
 #endif
