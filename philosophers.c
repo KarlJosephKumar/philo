@@ -6,7 +6,7 @@
 /*   By: kakumar <kakumar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:12:05 by kakumar           #+#    #+#             */
-/*   Updated: 2023/03/23 15:07:29 by kakumar          ###   ########.fr       */
+/*   Updated: 2023/03/29 13:57:13 by kakumar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,17 @@ int	main(int argc, char **argv)
 		printf("Errors found in data given in the arguments.\n");
 		return (-1);
 	}
-	init_data_philos(&data, argv, &common);
+	init_data_philos(&data, argv, &common, argc);
 	if (run_threads(&data) == -1)
 	{
 		printf("Failure in run threads\n");
 		return (-1);
 	}
+	else
+	{
+		free(data.philo);
+		free(data.threads);
+		return (0);
+	}
+	return 0;
 }

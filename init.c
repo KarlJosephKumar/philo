@@ -6,7 +6,7 @@
 /*   By: kakumar <kakumar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:47:14 by kakumar           #+#    #+#             */
-/*   Updated: 2023/03/27 15:52:45 by kakumar          ###   ########.fr       */
+/*   Updated: 2023/03/29 14:16:49 by kakumar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,13 @@ void	init_philos(t_data *data, int i, t_common *common)
 
 	philosopher.index = i;
 	philosopher.times_eaten = 0;
-	philosopher.last_meal = 0;
 	philosopher.state = 0;
 	philosopher.common = common;
 	pthread_mutex_init(&philosopher.fork_l, NULL);
 	data->philo[i] = philosopher;
 }
 
-void	init_data_philos(t_data *data, char **argv, t_common *common)
+void	init_data_philos(t_data *data, char **argv, t_common *common, int argc)
 {
 	int	i;
 
@@ -45,12 +44,13 @@ void	init_data_philos(t_data *data, char **argv, t_common *common)
 	common->time_to_sleep = philo_atoi(argv[4]);
 	data->common = common;
 	data->common->start_time = 0;
+	data->common->philos_eaten = 0;
 	pthread_mutex_init(&common->print_mute, NULL);
 	data->i = 0;
-	if (philo_atoi(argv[5]) > 0)
+	if (argc == 6)
 		common->number_of_times_to_eat = philo_atoi(argv[5]);
 	else
-		common->number_of_times_to_eat = -1;
+		common->number_of_times_to_eat = 2147483647;
 	data->philo = malloc (sizeof(t_philo) * data->number_of_philosophers);
 	while (i < data->number_of_philosophers)
 	{

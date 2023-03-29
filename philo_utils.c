@@ -6,11 +6,24 @@
 /*   By: kakumar <kakumar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:29:12 by kakumar           #+#    #+#             */
-/*   Updated: 2023/03/27 15:48:06 by kakumar          ###   ########.fr       */
+/*   Updated: 2023/03/29 15:46:12 by kakumar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	free_forks(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->number_of_philosophers)
+	{
+		data->philo[i].state = 3;
+		pthread_mutex_destroy(&data->philo[i].fork_l);
+		i++;
+	}
+}
 
 long long get_time_in_ms(void)
 {
@@ -27,12 +40,11 @@ void	s_leep(t_philo *philo, int time_to)
 	while(end_time >= get_time_in_ms())
 		usleep(500);
 }
-	// printf("time: %lli\n", time);
 
 void	print_action(char *str, t_philo *philo)
 {
 	pthread_mutex_lock(&philo->common->print_mute);
-	printf("%lli %i %s\n", get_time_in_ms() - philo->start, philo->index, str);
+	printf("%lli %i %s\n", get_time_in_ms() - philo->common->start_time, philo->index, str);
 	pthread_mutex_unlock(&philo->common->print_mute);
 }
 
